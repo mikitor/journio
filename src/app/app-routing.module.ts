@@ -9,8 +9,17 @@ const routes: Routes = [
   },
   {
     path: 'entries',
-    loadChildren: () => import('./entries/entries.module').then(m => m.EntriesPageModule)
-  },
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./pages/entries/entries.module').then(m => m.EntriesPageModule)
+      },
+      {
+        path: 'new',
+        loadChildren: () => import('./pages/new-entry/new-entry.module').then(m => m.NewEntryPageModule)
+      }
+    ]
+  }
 ];
 
 @NgModule({

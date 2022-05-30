@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Journio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="6" offset-sm="3" class="ion-text-center">
+        <ion-list>
+          <ion-item *ngFor="let entry of entries"
+            [routerLink]="['/', 'entries', 'discover', entry.id]">
+            <ion-label>
+              <h2>{{ entry.title }}</h2>
+              <p>{{ entry.content }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

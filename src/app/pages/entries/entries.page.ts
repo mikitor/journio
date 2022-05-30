@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EntriesService } from 'src/app/services/entries.service';
 
-import { EntriesService } from './entries.service';
 import { Entry } from './entry.model';
 
 @Component({
