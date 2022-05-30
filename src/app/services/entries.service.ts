@@ -23,7 +23,7 @@ export class EntriesService {
     {
       id: '3',
       title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      content: ``,
+      content: `Test`,
       date: new Date()
     }
   ];
