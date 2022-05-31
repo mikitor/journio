@@ -9,12 +9,11 @@
     <ion-row>
       <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
         <ion-list>
-          <ion-item-sliding *ngFor="let entry of entries">
+          <ion-item-sliding *ngFor="let entry of (entries$ | async)">
             <ion-item
-              [routerLink]="['/', 'entries', entry.id]" detail>
+              [routerLink]="['/', 'entries', 'edit', entry.id]" detail>
               <ion-label>
-                <h2>{{ entry.title }}</h2>
-                <p>{{ entry.content }}</p>
+                <h2>{{ entry.description }}</h2>
               </ion-label>
             </ion-item>
             <ion-item-options>

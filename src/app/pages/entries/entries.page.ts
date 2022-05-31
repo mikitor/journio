@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { EntriesService } from 'src/app/services/entries.service';
 
 import { Entry } from './entry.model';
@@ -9,11 +10,11 @@ import { Entry } from './entry.model';
   styleUrls: ['./entries.page.scss'],
 })
 export class EntriesPage implements OnInit {
-  entries: Entry[];
+  entries$: Observable<Entry[]>;
 
   constructor(private entriesService: EntriesService) { }
 
   ngOnInit() {
-    this.entries = this.entriesService.getEntries();
+    this.entries$ = this.entriesService.getEntries();
   }
 }
