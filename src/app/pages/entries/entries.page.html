@@ -11,9 +11,10 @@
         <ion-list>
           <ion-item-sliding *ngFor="let entry of (entries$ | async)">
             <ion-item
-              [routerLink]="['/', 'entries', 'edit', entry.id]" detail>
+              [routerLink]="['/', 'entries', entry.id, 'edit']" detail>
               <ion-label>
                 <h2>{{ entry.description }}</h2>
+                <p>{{ entry.timestamp.toDate() | date }}</p>
               </ion-label>
             </ion-item>
             <ion-item-options>
