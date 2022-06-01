@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, collectionData, doc, docData, Firestore, setDoc } from '@angular/fire/firestore';
+import { addDoc, collection, collectionData, doc, docData, Firestore, Timestamp, updateDoc } from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -29,11 +29,13 @@ export class EntriesService {
 
   setEntryById(id: string, data: Partial<Entry>) {
     const entryDocumentReference = doc(this.firestore, 'entries', id);
-    return setDoc(entryDocumentReference, data);
+    const entryHistoryCollectionReference = collection(this.firestore, 'entries', id, 'history');
+    addDoc(entryHistoryCollectionReference, { ...data, timestamp: Timestamp.now() });
+    return updateDoc(entryDocumentReference, data);
   }
 
   addEntry(data: Partial<Entry>) {
     const entriesCollectionReference = collection(this.firestore, 'entries');
-    return addDoc(entriesCollectionReference, data);
+    return addDoc(entriesCollectionReference, { ...data, timestamp: Timestamp.now() });
   }
 }
