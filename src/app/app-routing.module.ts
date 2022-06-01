@@ -13,7 +13,15 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('./pages/entries/entries.module').then(m => m.EntriesPageModule)
-      }
+      },
+      {
+        path: 'new',
+        loadChildren: () => import('./pages/edit-entry/edit-entry.module').then(m => m.EditEntryPageModule)
+      },
+      {
+        path: ':entryId/edit',
+        loadChildren: () => import('./pages/edit-entry/edit-entry.module').then(m => m.EditEntryPageModule)
+      },
     ]
   }
 ];
