@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, collectionData, doc, docData, Firestore, Timestamp, updateDoc } from '@angular/fire/firestore';
+import {
+  addDoc, collection, collectionData, doc, docData,
+  Firestore, Timestamp, updateDoc, query, orderBy, getDocs
+} from '@angular/fire/firestore';
 import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -20,6 +23,11 @@ export class EntriesService {
 
   getEntries() {
     return this.entries$.asObservable();
+  }
+
+  getEntryHistory(entryId: string) {
+    const q = query(collection(this.firestore, 'entries', entryId, 'history'), orderBy('timestamp', 'desc'));
+    return getDocs(q);
   }
 
   getEntryById(id: string) {

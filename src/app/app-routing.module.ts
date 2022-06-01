@@ -22,6 +22,10 @@ const routes: Routes = [
         path: ':entryId/edit',
         loadChildren: () => import('./pages/edit-entry/edit-entry.module').then(m => m.EditEntryPageModule)
       },
+      {
+        path: ':entryId/history',
+        loadChildren: () => import('./pages/history/history.module').then(m => m.HistoryPageModule)
+      },
     ]
   }
 ];

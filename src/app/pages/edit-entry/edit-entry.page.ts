@@ -25,6 +25,7 @@ export class EditEntryPage implements OnInit, OnDestroy {
   ytext = this.ydoc.getText('quill');
   firestoreProvider: FirestoreProvider;
   routeSubscription: Subscription;
+  entryId: string;
 
   constructor(
     private firestore: Firestore,
@@ -34,7 +35,8 @@ export class EditEntryPage implements OnInit, OnDestroy {
     this.routeSubscription = this.activatedRoute.paramMap
       .pipe(tap(paramMap => {
         if (paramMap.has('entryId')) {
-          this.firestoreProvider = new FirestoreProvider(this.ydoc, this.firestore, this.entriesService, paramMap.get('entryId'));
+          this.entryId = paramMap.get('entryId');
+          this.firestoreProvider = new FirestoreProvider(this.ydoc, this.firestore, this.entriesService, this.entryId);
         } else {
           this.firestoreProvider = new FirestoreProvider(this.ydoc, this.firestore, entriesService);
         }
